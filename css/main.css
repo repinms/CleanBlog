@@ -1,3 +1,4 @@
-body{
-    
+.link-href, :hover{
+    text-decoration: none;
+    color: #000;
 }
