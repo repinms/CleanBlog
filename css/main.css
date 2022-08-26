@@ -1,4 +1,7 @@
-.link-href, :hover{
+.link-dark{
     text-decoration: none;
-    color: #000;
+}
+
+.stretched-link:hover{
+    background-color: rgba(0, 0, 0, 0.5);
 }
