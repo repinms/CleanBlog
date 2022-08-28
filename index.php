@@ -15,7 +15,7 @@ include('preview_text.php');?>
 <body>
     <div class="container">
         
-    <?php include("templates/header.php");?>
+        <?php include("templates/header.php");?>
 
         <main>
             <section id="big-banners">
@@ -27,7 +27,7 @@ include('preview_text.php');?>
                             <div class="card card_banner" style="background-image: url(content/article_image/<?php echo $article_logo;?>);">
                                 <div class="d-flex card-body align-items-center justify-content-end flex-column card_banner_body">
                                     <p class="card-text fs-3 text-white"><?php echo $article_name;?></p>
-                                    <small class="text-white align-self-end"><?php echo $article_date;?></small>
+                                    <small class="text-white align-self-end"><?php echo date("d-m-Y", strtotime($article_date));?></small>
                                     <a href="#" class="stretched-link"></a>
                                 </div>
                             </div>
@@ -50,12 +50,11 @@ include('preview_text.php');?>
                                 if($id==$article_id && $tag==$tag_id):?>
                                     <div class="col-sm-12 col-md-6 col-lg-3">
                                         <div class="card shadow mt-3" style="min-height: 450px;">
-                                            <!-- <img class="rounded_img" src="content/article_image/<?php echo $article_logo;?>" alt="" width="100%" height="225" style="object-fit: cover;"> -->
                                             <div class="card_image" style="background-image: url(content/article_image/<?php echo $article_logo;?>);"></div>
                                             <div class="card-body d-flex flex-column align-items-start justify-content-between">
                                                 <b class="card-text"><?php echo $article_name;?></b>
                                                 <p class="card-text preview-card-text"><?php echo preview_text($article_text, 90);?></p>
-                                                <small class="text-muted"><?php echo $article_date;?></small>
+                                                <small class="text-muted"><?php echo date("d-m-Y", strtotime($article_date));?></small>
                                                 <a href="#" class="stretched-link"></a>
                                             </div>
                                         </div>

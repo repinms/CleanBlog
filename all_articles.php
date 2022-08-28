@@ -1,4 +1,5 @@
-<?php require('database/connect.php'); ?>
+<?php require('database/connect.php'); 
+include('preview_text.php');?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,24 +15,28 @@
 <body>
     <div class="container">
         
-    <?php include("templates/header.php");?>
+        <?php include("templates/header.php");?>
 
         <main>
-            <div class="fs-3 mb-2">Все статьи</div>
-            <div class="row">
-                <div class="col-sm-12 col-md-6 col-lg-3">
-                    <div class="card shadow-sm">
-                        <img src="content/images/yandex.jpg" alt="preview" width="100%" height="225" style="object-fit: cover;">
-                        
-                        <div class="card-body d-flex flex-column align-items-start justify-content-center">
-                            <b class="card-text">Название</b>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <small class="text-muted">9 mins</small>
-                            <a href="#" class="stretched-link"></a>
+            <section id="arcticles">
+                <div class="fs-3 mb-2">Все статьи</div>
+                <?php $articles=$mysqli->query('SELECT * FROM articles ORDER by date desc')->fetch_all();?>
+                <div class="row">
+                    <?php foreach($articles as list($article_id, $article_name, $article_date, $article_logo, $article_text)):?>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="card shadow mt-3" style="min-height: 450px;">
+                                <div class="card_image" style="background-image: url(content/article_image/<?php echo $article_logo;?>);"></div>
+                                <div class="card-body d-flex flex-column align-items-start justify-content-between">
+                                    <b class="card-text"><?php echo $article_name;?></b>
+                                    <p class="card-text preview-card-text"><?php echo preview_text($article_text, 90);?></p>
+                                    <small class="text-muted"><?php echo date("d-m-Y", strtotime($article_date));?></small>
+                                    <a href="#" class="stretched-link"></a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    <?php endforeach;?>
                 </div>
-            </div>
+            </section>
         </main>
 
         <?php include("templates/footer.php");?>
