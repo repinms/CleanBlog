@@ -16,7 +16,11 @@
                     </li>
                 </ul>
                 
-                <a href="#" class="btn btn-outline-success fs-5">Войти</a>
+                <?php if(isset($_COOKIE['user'])):?>
+                    <p><?php echo 'Аккаунт: ' . $_COOKIE['user'];?></p>
+                <?php else:?>
+                    <a href="../registration.php" class="btn btn-outline-success fs-5">Войти</a>
+                <?php endif;?>
             </div>
         </div>
     </nav>

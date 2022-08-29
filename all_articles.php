@@ -7,9 +7,8 @@ include('preview_text.php');?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css/">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
     <title>CleanBlog</title>
 </head>
 <body>
@@ -42,5 +41,6 @@ include('preview_text.php');?>
         <?php include("templates/footer.php");?>
         
     </div>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
 </body>
 </html>

@@ -7,9 +7,8 @@ include('preview_text.php');?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="text/html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css/">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
     <title>CleanBlog</title>
 </head>
 <body>
@@ -24,7 +23,7 @@ include('preview_text.php');?>
                 <div class="row d-flex justify-content-around mb-3">
                     <?php foreach($articles as list($article_id, $article_name, $article_date, $article_logo, $article_text)):?>
                         <div class="col-sm-12 col-lg-6 mb-1">
-                            <div class="card card_banner" style="background-image: url(content/article_image/<?php echo $article_logo;?>);">
+                            <div class="card card_banner" style="height: 400px;background-image: url(content/article_image/<?php echo $article_logo;?>);">
                                 <div class="d-flex card-body align-items-center justify-content-end flex-column card_banner_body">
                                     <p class="card-text fs-3 text-white"><?php echo $article_name;?></p>
                                     <small class="text-white align-self-end"><?php echo date("d-m-Y", strtotime($article_date));?></small>
