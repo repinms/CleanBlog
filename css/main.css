@@ -1,21 +1,39 @@
-html, body{
+html,body{
     height: 100%;
 }
-.container{
+body{
+    position: relative;
+  }
+body::before {
+      background: url("../content/images/background.jpg") no-repeat;
+      background-size: cover;
+      background-color: rgba(0, 0, 0, 0.5);
+      background-blend-mode: multiply;
+      content: ' ';
+      height: 100%;
+      left: 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      will-change: transform;
+      z-index: -1;
+  }
+
+.wrapper{
     display: flex;
     flex-direction: column;
     min-height: 100%;
 }
-.link-dark{
+.link{
     text-decoration: none;
 }
 
-.link-dark:hover{
+.link:hover{
     text-decoration: underline;
 }
 
 .card:hover{
-    background: rgba(0, 0, 0, 0.05);
+    background: rgb(230, 230, 230);
 }
 
 .card_image{
@@ -33,6 +51,7 @@ html, body{
 .card_banner{
     background-size: cover;
     height: 400px;
+    border-radius: 0%!important;
 }
 
 .card_banner_body{

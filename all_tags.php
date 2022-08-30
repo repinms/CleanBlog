@@ -11,14 +11,14 @@
     <title>CleanBlog</title>
 </head>
 <body>
-    <div class="container">
+    <div class="wrapper">
         
         <?php include("templates/header.php");?>
 
-        <main>
+        <main class="container">
             <section id="tags">
                 <?php $tags=$mysqli->query('SELECT * FROM tags')->fetch_all();?>
-                <div class="fs-3 mb-2">Тэги</div>
+                <div class="text-white fs-3 mb-2">Тэги</div>
                 <div class="col-3">
                     <ul class="list-group">
                         <?php foreach($tags as list($id, $tag)):?>

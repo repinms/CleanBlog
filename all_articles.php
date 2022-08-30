@@ -12,13 +12,13 @@ include('preview_text.php');?>
     <title>CleanBlog</title>
 </head>
 <body>
-    <div class="container">
+    <div class="wrapper">
         
         <?php include("templates/header.php");?>
 
-        <main>
+        <main class="container">
             <section id="arcticles">
-                <div class="fs-3 mb-2">Все статьи</div>
+                <div class="text-white fs-3 mb-2">Все статьи</div>
                 <?php $articles=$mysqli->query('SELECT * FROM articles ORDER by date desc')->fetch_all();?>
                 <div class="row">
                     <?php foreach($articles as list($article_id, $article_name, $article_date, $article_logo, $article_text)):?>
