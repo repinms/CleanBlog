@@ -53,7 +53,7 @@ include('preview_text.php');?>
                                             <div class="card-body d-flex flex-column align-items-start justify-content-between">
                                                 <b class="card-text"><?php echo $article_name;?></b>
                                                 <p class="card-text preview-card-text"><?php echo preview_text($article_text, 90);?></p>
-                                                <small class="text-muted"><?php echo date("d-m-Y", strtotime($article_date));?></small>
+                                                <small class="text-muted clock_time"><?php echo date("d-m-Y", strtotime($article_date));?></small>
                                                 <a href="#" class="stretched-link"></a>
                                             </div>
                                         </div>

@@ -11,16 +11,15 @@
     <title>CleanBlog</title>
 </head>
 <body>
-    <?php $error = '';?>
-        
+
     <div class="wrapper">
         
         <main class="container form-signin w-50 m-auto text-center">
             <a href="/" class="d-block text-white fs-1 mb-5 text-decoration-none">CLEANBLOG</a>
             <div class="text-danger fs-6"><?php echo $error;?></div>
-            <form method="POST" action="registration.php">
+            <form method="POST" action="login.php">
                
-                <h1 class="text-white h3 mb-3 fw-normal">Регистрация</h1>
+                <h1 class="text-white h3 mb-3 fw-normal">Войти в аккаунт</h1>
 
                 <div class="form-floating">
                 <input type="text" class="form-control" name="login" id="floatingInput" placeholder="text" minlength="4" maxlength="20" required="required">
@@ -31,7 +30,7 @@
                     <label for="floatingPassword">Пароль</label>
                 </div>
 
-                <button class="mt-3 w-100 btn btn-lg btn-success" type="submit">Зарегистрироваться</button>
+                <button class="mt-3 w-100 btn btn-lg btn-success" type="submit">Войти</button>
             </form>
         </main>
         <?php include("templates/footer.php");?>
@@ -41,13 +40,21 @@
     <?php
         if(isset($_POST['login']) && isset($_POST['password'])){
             $login = htmlspecialchars($_POST['login']);
-            $password = password_hash(htmlspecialchars($_POST['password']), PASSWORD_DEFAULT);
-            $mysqli->query("INSERT INTO users (login, password) VALUES ('$login', '$password')");
-            $error = '';
-            header('Location: login.php');
-            exit;
+            $password = htmlspecialchars($_POST['password']);
+            $result = $mysqli->query("SELECT * FROM users WHERE login='$login'")->fetch_array();
+            if (password_verify($password, $result['password'])){
+                session_start();
+                $_SESSION['user'] = $login;
+                $_SESSION['usertype'] = $result['type'];
+                $error = '';
+                header('Location: index.php');
+                exit;
+            }
+            else{
+                $error = 'Неверный ЛОГИН или ПАРОЛЬ';
+            }
         } else{
-            $error = 'Произошла ошибка';
+            $error = 'Пользователь не найден';
         }
     ?>
 </body>
