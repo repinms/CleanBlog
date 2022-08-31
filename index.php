@@ -27,7 +27,7 @@ include('preview_text.php');?>
                                 <div class="d-flex card-body align-items-center justify-content-end flex-column card_banner_body">
                                     <p class="card-text fs-3 text-white"><?php echo $article_name;?></p>
                                     <small class="text-white align-self-end"><?php echo date("d-m-Y", strtotime($article_date));?></small>
-                                    <a href="#" class="stretched-link"></a>
+                                    <a href="article_page.php?id=<?php echo $article_id;?>" class="stretched-link"></a>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +54,7 @@ include('preview_text.php');?>
                                                 <b class="card-text"><?php echo $article_name;?></b>
                                                 <p class="card-text preview-card-text"><?php echo preview_text($article_text, 90);?></p>
                                                 <small class="text-muted clock_time"><?php echo date("d-m-Y", strtotime($article_date));?></small>
-                                                <a href="#" class="stretched-link"></a>
+                                                <a href="article_page.php?id=<?php echo $article_id;?>" class="stretched-link"></a>
                                             </div>
                                         </div>
                                     </div>

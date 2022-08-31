@@ -43,7 +43,7 @@
                 <h1 class="text-white h3 mb-3 fw-normal">Смена пароля</h1>
 
                 <div class="form-floating">
-                <input type="text" class="form-control" name="old_password" id="floatingInput" placeholder="Password" minlength="4" maxlength="20" required="required">
+                <input type="password" class="form-control" name="old_password" id="floatingInput" placeholder="Password" minlength="4" maxlength="20" required="required">
                     <label for="floatingInput">Текущий пароль</label>
                 </div>
                 <div class="form-floating">

@@ -1,0 +1,9 @@
+.content_image{
+    height: 450px;
+    background-size: cover; 
+    background-position: 50% 50%;
+}
+
+.content, .tag_articles{
+    background-color: rgb(240, 240, 240)!important;
+}
