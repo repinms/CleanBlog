@@ -15,9 +15,9 @@
                         <a class="nav-link text-white" href="../all_tags.php">Тэги</a>
                     </li>
                 </ul>
-                <?php echo $_SESSION['user'];?>
-                <?php if(isset($_SESSION['user'])):?>
-                    <p><?php echo 'Аккаунт: ' . $_SESSION['user'];?></p>
+                <?php session_start();
+                    if(isset($_SESSION['user'])):?>
+                        <a href="account.php" class="text-white m-0 text-decoration-none"><?php echo 'Аккаунт: ' . $_SESSION['user'];?></a>
                 <?php else:?>
                     <a href="../login.php" class="text-white btn fs-6 me-2">Войти</a>
                     <a href="../registration.php" class="text-white btn btn-success fs-6">Регистрация</a>

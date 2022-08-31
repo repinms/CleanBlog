@@ -8,7 +8,7 @@ body{
 body::before {
     background: url("../content/images/background.jpg") no-repeat;
     background-size: cover;
-    background-color: rgba(13, 58, 100, 0.5);
+    background-color: rgba(13, 58, 100, 0.548);
     background-blend-mode: multiply;
     content: ' ';
     height: 100%;
@@ -21,7 +21,7 @@ body::before {
 }
 
 .wrapper{
-    margin-top: 100px;
+    margin-top: 90px;
     display: flex;
     flex-direction: column;
     min-height: 100%;

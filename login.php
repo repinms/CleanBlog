@@ -11,12 +11,32 @@
     <title>CleanBlog</title>
 </head>
 <body>
+<?php
+        if(isset($_POST['login']) && isset($_POST['password'])){
+            $login = htmlspecialchars($_POST['login']);
+            $password = htmlspecialchars($_POST['password']);
+            $result = $mysqli->query("SELECT * FROM users WHERE login='$login'")->fetch_array();
+            if (password_verify($password, $result['password'])){
+                session_start();
+                $_SESSION['user'] = $login;
+                $_SESSION['usertype'] = $result['type'];
+                $error = false;
+                header('Location: index.php');
+                exit;
+            }
+            else{
+                $error = true;
+            }
+        } else{
+            $error = false;
+        }
+    ?>
 
     <div class="wrapper">
         
         <main class="container form-signin w-50 m-auto text-center">
             <a href="/" class="d-block text-white fs-1 mb-5 text-decoration-none">CLEANBLOG</a>
-            <div class="text-danger fs-6"><?php echo $error;?></div>
+            <div class="text-danger fs-6"><?php if ($error) {echo 'Неверный логин или пароль';}?></div>
             <form method="POST" action="login.php">
                
                 <h1 class="text-white h3 mb-3 fw-normal">Войти в аккаунт</h1>
@@ -37,24 +57,4 @@
     </div>
     <script type="text/javascript" src="js/bootstrap.js"></script>
 
-    <?php
-        if(isset($_POST['login']) && isset($_POST['password'])){
-            $login = htmlspecialchars($_POST['login']);
-            $password = htmlspecialchars($_POST['password']);
-            $result = $mysqli->query("SELECT * FROM users WHERE login='$login'")->fetch_array();
-            if (password_verify($password, $result['password'])){
-                session_start();
-                $_SESSION['user'] = $login;
-                $_SESSION['usertype'] = $result['type'];
-                $error = '';
-                header('Location: index.php');
-                exit;
-            }
-            else{
-                $error = 'Неверный ЛОГИН или ПАРОЛЬ';
-            }
-        } else{
-            $error = 'Пользователь не найден';
-        }
-    ?>
 </body>
