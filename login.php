@@ -20,6 +20,7 @@
                 session_start();
                 $_SESSION['user'] = $login;
                 $_SESSION['usertype'] = $result['type'];
+                $_SESSION['user_id'] = $result['id'];
                 $error = false;
                 header('Location: index.php');
                 exit;

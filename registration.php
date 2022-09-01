@@ -12,6 +12,20 @@
 </head>
 <body>
     <?php $error = '';?>
+    <?php
+        $post = $_POST['login'];
+        $exist = $mysqli->query("SELECT * FROM users WHERE login='$post'")->num_rows;
+        if(isset($_POST['login']) && isset($_POST['password'])){
+            if($exist==0){
+                $login = htmlspecialchars($_POST['login']);
+                $password = password_hash(htmlspecialchars($_POST['password']), PASSWORD_DEFAULT);
+                $mysqli->query("INSERT INTO users (login, password) VALUES ('$login', '$password')");
+                $error = '';
+                header('Location: login.php');
+                exit;
+            } else{$error = 'Логин уже занят';}
+        }
+    ?>
         
     <div class="wrapper">
         
@@ -37,17 +51,4 @@
         <?php include("templates/footer.php");?>
     </div>
     <script type="text/javascript" src="js/bootstrap.js"></script>
-
-    <?php
-        if(isset($_POST['login']) && isset($_POST['password'])){
-            $login = htmlspecialchars($_POST['login']);
-            $password = password_hash(htmlspecialchars($_POST['password']), PASSWORD_DEFAULT);
-            $mysqli->query("INSERT INTO users (login, password) VALUES ('$login', '$password')");
-            $error = '';
-            header('Location: login.php');
-            exit;
-        } else{
-            $error = 'Произошла ошибка';
-        }
-    ?>
 </body>
