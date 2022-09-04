@@ -34,7 +34,7 @@ include('preview_text.php');?>
             </section>
             <section id="arcticles">
                 <?php $tags=$mysqli->query('SELECT * FROM tags')->fetch_all();
-                $articles=$mysqli->query('SELECT * FROM articles')->fetch_all();
+                $articles=$mysqli->query('SELECT * FROM articles LIMIT 4')->fetch_all();
                 $article_tag=$mysqli->query('SELECT * FROM article_tag')->fetch_all();?>
                 <?php foreach($tags as list($tag_id, $tag_name)):?>
                     <div class="border-bottom mb-3 mt-3"></div>
