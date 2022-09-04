@@ -1,5 +1,5 @@
+<?php session_start();?>
 <?php require('database/connect.php');?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +12,7 @@
 </head>
 <body>
     <div class="wrapper">
-        
         <?php include("templates/header.php");?>
-
         <main class="container">
             <section id="tags">
                 <?php $tags=$mysqli->query('SELECT * FROM tags')->fetch_all();?>
@@ -22,16 +20,13 @@
                 <div class="col-3">
                     <ul class="list-group">
                         <?php foreach($tags as list($id, $tag)):?>
-                            <li class="list-group-item"><a href="#" class="link-dark"><?php echo $tag;?></a></li>
+                            <li class="list-group-item"><a href="all_articles.php?tag=<?php echo $id;?>" class="link-dark"><?php echo $tag;?></a></li>
                         <?php endforeach;?>
-                    </ul>   
+                    </ul>
                 </div>
-                
             </section>
         </main>
-
         <?php include("templates/footer.php");?>
-        
     </div>
     <script type="text/javascript" src="js/bootstrap.js"></script>
 </body>

@@ -1,6 +1,6 @@
-<?php require('database/connect.php'); 
+<?php session_start();?>
+<?php require('database/connect.php');
 include('preview_text.php');?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +13,7 @@ include('preview_text.php');?>
 </head>
 <body>
     <div class="wrapper">
-        
         <?php include("templates/header.php");?>
-
         <main class="container">
             <section id="big-banners">
                 <?php $articles=$mysqli->query('SELECT * FROM articles order by id desc limit 2;')->fetch_all();?>
@@ -34,12 +32,10 @@ include('preview_text.php');?>
                     <?php endforeach;?>
                 </div>
             </section>
-
             <section id="arcticles">
                 <?php $tags=$mysqli->query('SELECT * FROM tags')->fetch_all();
                 $articles=$mysqli->query('SELECT * FROM articles')->fetch_all();
                 $article_tag=$mysqli->query('SELECT * FROM article_tag')->fetch_all();?>
-                
                 <?php foreach($tags as list($tag_id, $tag_name)):?>
                     <div class="border-bottom mb-3 mt-3"></div>
                     <div class="fs-4"><a href="#" class="text-white link"><?php echo $tag_name?></a></div>
@@ -64,13 +60,9 @@ include('preview_text.php');?>
                     </div>
                 <?php endforeach;?>
             </section>
-            
         </main>
-
         <?php include("templates/footer.php");?>
-        
     </div>
     <script type="text/javascript" src="js/bootstrap.js"></script>
-    
 </body>
 </html>

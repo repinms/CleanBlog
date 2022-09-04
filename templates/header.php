@@ -2,7 +2,6 @@
     <nav class="container navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="text-white navbar-brand fs-3 me-5" href="/">CleanBlog</a>
-        
             <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -15,7 +14,7 @@
                         <a class="nav-link text-white" href="../all_tags.php">Тэги</a>
                     </li>
                 </ul>
-                <?php session_start();
+                <?php
                     if(isset($_SESSION['user'])):?>
                         <a href="account.php" class="text-white m-0 text-decoration-none"><?php echo 'Аккаунт: ' . $_SESSION['user'];?></a>
                 <?php else:?>

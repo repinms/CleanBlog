@@ -1,5 +1,5 @@
+<?php session_start();?>
 <?php require('database/connect.php');?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,51 +11,31 @@
     <title>CleanBlog</title>
 </head>
 <body>
-<?php
-        if(isset($_POST['login']) && isset($_POST['password'])){
-            $login = htmlspecialchars($_POST['login']);
-            $password = htmlspecialchars($_POST['password']);
-            $result = $mysqli->query("SELECT * FROM users WHERE login='$login'")->fetch_array();
-            if (password_verify($password, $result['password'])){
-                session_start();
-                $_SESSION['user'] = $login;
-                $_SESSION['usertype'] = $result['type'];
-                $_SESSION['user_id'] = $result['id'];
-                $error = false;
-                header('Location: index.php');
-                exit;
-            }
-            else{
-                $error = true;
-            }
-        } else{
-            $error = false;
-        }
-    ?>
-
     <div class="wrapper">
-        
-        <main class="container form-signin w-50 m-auto text-center">
-            <a href="/" class="d-block text-white fs-1 mb-5 text-decoration-none">CLEANBLOG</a>
-            <div class="text-danger fs-6"><?php if ($error) {echo 'Неверный логин или пароль';}?></div>
-            <form method="POST" action="login.php">
-               
-                <h1 class="text-white h3 mb-3 fw-normal">Войти в аккаунт</h1>
+        <main class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <a href="/" class="d-block text-white fs-1 mb-5 text-decoration-none">CLEANBLOG</a>
+                    <div class="text-danger fs-6"><?php if(isset($_SESSION['error'])){echo $_SESSION['error'];}?></div>
 
-                <div class="form-floating">
-                <input type="text" class="form-control" name="login" id="floatingInput" placeholder="text" minlength="4" maxlength="20" required="required">
-                    <label for="floatingInput">Логин</label>
+                    <form method="POST" action="validate.php">
+                        <input type="hidden" name="formtype" value="login">
+                        <h1 class="text-white h3 mb-3 fw-normal">Войти в аккаунт</h1>
+                        <div class="form-floating">
+                        <input type="text" class="form-control" name="login" id="floatingInput" placeholder="text" minlength="4" maxlength="20" required="required">
+                            <label for="floatingInput">Логин</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password" minlength="4" maxlength="20" required="required">
+                            <label for="floatingPassword">Пароль</label>
+                        </div>
+                        <button class="mt-3 w-100 btn btn-lg btn-success" type="submit">Войти</button>
+                    </form>
                 </div>
-                <div class="form-floating">
-                    <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password" minlength="4" maxlength="20" required="required">
-                    <label for="floatingPassword">Пароль</label>
-                </div>
-
-                <button class="mt-3 w-100 btn btn-lg btn-success" type="submit">Войти</button>
-            </form>
+            </div>
         </main>
         <?php include("templates/footer.php");?>
     </div>
     <script type="text/javascript" src="js/bootstrap.js"></script>
-
 </body>
+</html>
