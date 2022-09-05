@@ -39,7 +39,9 @@ include('preview_text.php');?>
                     <div class="border-bottom mb-3 mt-3"></div>
                     <div class="fs-4"><a href="all_articles.php?tag=<?php echo $tag_id;?>" class="text-white link"><?php echo $tag_name;?></a></div>
                     <div class="row">
+                        <?php $count = 0;?>
                         <?php foreach($article_tag as list($article_id, $tag_id)):
+                            if($count==4){break;}else{$count++;}
                             $articles=$mysqli->query("SELECT * FROM articles WHERE id='$article_id' LIMIT 4")->fetch_all();
                             foreach($articles as list($article_id, $article_name, $article_date, $article_logo, $article_text)):?>
                                 <div class="col-sm-12 col-md-6 col-lg-3">
