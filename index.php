@@ -33,28 +33,26 @@ include('preview_text.php');?>
                 </div>
             </section>
             <section id="arcticles">
-                <?php $tags=$mysqli->query('SELECT * FROM tags')->fetch_all();
-                $articles=$mysqli->query('SELECT * FROM articles LIMIT 4')->fetch_all();
-                $article_tag=$mysqli->query('SELECT * FROM article_tag')->fetch_all();?>
-                <?php foreach($tags as list($tag_id, $tag_name)):?>
+                <?php $tags=$mysqli->query('SELECT * FROM tags')->fetch_all();?>
+                <?php foreach($tags as list($tag_id, $tag_name)):
+                    $article_tag=$mysqli->query("SELECT * FROM article_tag WHERE tag_id='$tag_id'")->fetch_all();?>
                     <div class="border-bottom mb-3 mt-3"></div>
-                    <div class="fs-4"><a href="#" class="text-white link"><?php echo $tag_name?></a></div>
+                    <div class="fs-4"><a href="all_articles.php?tag=<?php echo $tag_id;?>" class="text-white link"><?php echo $tag_name;?></a></div>
                     <div class="row">
-                        <?php foreach($articles as list($article_id, $article_name, $article_date, $article_logo, $article_text)):
-                            foreach($article_tag as list($id, $tag)):
-                                if($id==$article_id && $tag==$tag_id):?>
-                                    <div class="col-sm-12 col-md-6 col-lg-3">
-                                        <div class="card shadow mt-3" style="min-height: 450px;">
-                                            <div class="card_image" style="background-image: url(content/article_image/<?php echo $article_logo;?>);"></div>
-                                            <div class="card-body d-flex flex-column align-items-start justify-content-between">
-                                                <b class="card-text"><?php echo $article_name;?></b>
-                                                <p class="card-text preview-card-text"><?php echo preview_text($article_text, 90);?></p>
-                                                <small class="text-muted clock_time"><?php echo date("d-m-Y", strtotime($article_date));?></small>
-                                                <a href="article_page.php?id=<?php echo $article_id;?>" class="stretched-link"></a>
-                                            </div>
+                        <?php foreach($article_tag as list($article_id, $tag_id)):
+                            $articles=$mysqli->query("SELECT * FROM articles WHERE id='$article_id' LIMIT 4")->fetch_all();
+                            foreach($articles as list($article_id, $article_name, $article_date, $article_logo, $article_text)):?>
+                                <div class="col-sm-12 col-md-6 col-lg-3">
+                                    <div class="card shadow mt-3" style="min-height: 450px;">
+                                        <div class="card_image" style="background-image: url(content/article_image/<?php echo $article_logo;?>);"></div>
+                                        <div class="card-body d-flex flex-column align-items-start justify-content-between">
+                                            <b class="card-text"><?php echo $article_name;?></b>
+                                            <p class="card-text preview-card-text"><?php echo preview_text($article_text, 90);?></p>
+                                            <small class="text-muted clock_time"><?php echo date("d-m-Y", strtotime($article_date));?></small>
+                                            <a href="article_page.php?id=<?php echo $article_id;?>" class="stretched-link"></a>
                                         </div>
                                     </div>
-                                <?php endif;?>
+                                </div>
                             <?php endforeach;?>
                         <?php endforeach;?>
                     </div>
